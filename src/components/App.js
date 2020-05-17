@@ -5,54 +5,29 @@ import "./App.css";
 import * as BooksAPI from "../apis/BooksAPI";
 
 class BooksApp extends React.Component {
-  /*
+  state = { books: [] };
+  constructor() {
+    super();
 
-  //how to get the result another way
-    ///.then((response) => {
-    ///console.log(response.data.results);
-    /// });
-
-  fetch('https://api.mydomain.com')
-      .then(response => response.json())
-      .then(data => this.setState({ data }));
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.state = {
+      books,
+    };
   }
-   onSearchSubmit = async (term) => {
-    const response = await unsplash.get("/search/photos", {
-      params: { query: term },
-    });
-
-fetch(`${api}/search`, {
-    method: 'POST',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ query })
-  }).then(res => res.json())
-    .then(data => data.books)
-  
-  
-  export const search = (query) =>
-  fetch(`${api}/search`, {
-    method: 'POST',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ query })
-  }).then(res => res.json())
-    .then(data => data.books)
-*/
-
+  //Take the term and return the search result
   onSearchSubmit(term) {
     console.log(term);
     BooksAPI.search(term)
       .then((response) => {
-        console.log(response.data.results);
+        console.log(response[1]);
+        response.map();
+        //this.setState({ books: response });
       })
       .catch((error) => {
         console.log("Error fetching and parsing data", error);
       });
+
+    //  console.log(response);
   }
   render() {
     //the main app have two route main page or search
