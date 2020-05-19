@@ -5,12 +5,12 @@ import "./App.css";
 const BooksList = (props) => {
   console.log("frombookslist");
   console.log(props.books);
-  if (props.books.length > 0) {
+  if (props && props.books && props.books.length > 0) {
     const books = props.books.map((book) => {
       return <img src={book.imageLinks.smallThumbnail} />;
     });
     return <div>{books}</div>;
-  } else return <h1>Loading</h1>;
+  } else return null;
 };
 
 export default BooksList;
