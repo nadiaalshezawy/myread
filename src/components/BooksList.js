@@ -1,13 +1,15 @@
 import React from "react";
-import "./App.css";
+import BookItem from "./BookItem";
+
 //<div>{book.title}</div>
+//<BookItem key={book.id} />;
 //return <img src={book.imageLinks.smallThumbnail} />;
 const BooksList = (props) => {
   console.log("frombookslist");
   console.log(props.books);
   if (props && props.books && props.books.length > 0) {
     const books = props.books.map((book) => {
-      return <img src={book.imageLinks.smallThumbnail} />;
+      return <BookItem key={book.id} book={book} />;
     });
     return <div>{books}</div>;
   } else return null;

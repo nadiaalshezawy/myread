@@ -31,8 +31,15 @@ class SearchPage extends React.Component {
   render() {
     return (
       <div>
-        <SearchBar onTermSubmit={this.onSearchSubmit} />
-        <BooksList books={this.state.books} />
+        <div className="search-books">
+          <SearchBar onTermSubmit={this.onSearchSubmit} />
+        </div>
+
+        <div className="search-books-results">
+          <ol className="books-grid">
+            <BooksList books={this.state.books} />
+          </ol>
+        </div>
       </div>
     );
   }
