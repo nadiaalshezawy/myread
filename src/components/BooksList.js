@@ -7,11 +7,19 @@ import BookItem from "./BookItem";
 const BooksList = (props) => {
   console.log("frombookslist");
   console.log(props.books);
+
   if (props && props.books && props.books.length > 0) {
+    // const onCheckSubmit = props.onCheckSubmit;
     const books = props.books.map((book) => {
-      return <BookItem key={book.id} book={book} />;
+      return (
+        <BookItem
+          key={book.id}
+          book={book}
+          onOptionSubmit={props.onOptionSubmit}
+        />
+      );
     });
-    return <div>{books}</div>;
+    return books;
   } else return null;
 };
 

@@ -14,6 +14,7 @@ class SearchPage extends React.Component {
 
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
   }
+
   //Take the term and return the search result
   onSearchSubmit = async (term) => {
     console.log(term);
@@ -37,7 +38,10 @@ class SearchPage extends React.Component {
 
         <div className="search-books-results">
           <ol className="books-grid">
-            <BooksList books={this.state.books} />
+            <BooksList
+              books={this.state.books}
+              onOptionSubmit={this.props.onOptionSubmit}
+            />
           </ol>
         </div>
       </div>
