@@ -5,19 +5,15 @@ import BookItem from "./BookItem";
 //<BookItem key={book.id} />;
 //return <img src={book.imageLinks.smallThumbnail} />;
 const BooksList = (props) => {
-  console.log("frombookslist");
-  console.log(props.books);
+  //console.log("frombookslist");
+  // console.log(props.books);
 
   if (props && props.books && props.books.length > 0) {
     // const onCheckSubmit = props.onCheckSubmit;
     const books = props.books.map((book) => {
       return (
-        <ol className="books-grid">
-          <BookItem
-            key={book.id}
-            book={book}
-            onOptionSubmit={props.onOptionSubmit}
-          />
+        <ol className="books-grid" key={book.id}>
+          <BookItem book={book} onOptionSubmit={props.onOptionSubmit} />
         </ol>
       );
     });

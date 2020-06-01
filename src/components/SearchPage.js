@@ -13,6 +13,7 @@ class SearchPage extends React.Component {
     //};
 
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.onOptionSubmit = this.onOptionSubmit.bind(this);
   }
 
   //Take the term and return the search result
@@ -29,6 +30,21 @@ class SearchPage extends React.Component {
     console.log(this.state.books);
     //   <BooksList books={this.state.books} />
   };
+
+  onOptionSubmit = (Book, option) => {
+    BooksAPI.update(Book, option)
+      .then((response) => {
+        if (option !== "none") {
+          alert("The book have been added to your shelf");
+        }
+        console.log(response);
+      })
+      .catch((error) => {
+        alert("Their was an error while add a book to your shelf");
+        console.log("error shelfing book");
+      });
+    console.log("from search page");
+  };
   render() {
     return (
       <div>
@@ -37,12 +53,10 @@ class SearchPage extends React.Component {
         </div>
 
         <div className="search-books-results">
-          <ol className="books-grid">
-            <BooksList
-              books={this.state.books}
-              onOptionSubmit={this.props.onOptionSubmit}
-            />
-          </ol>
+          <BooksList
+            books={this.state.books}
+            onOptionSubmit={this.onOptionSubmit}
+          />
         </div>
       </div>
     );

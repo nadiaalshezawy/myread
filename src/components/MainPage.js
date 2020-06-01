@@ -2,13 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./App.css";
 import BooksList from "./BooksList";
-import BookShelfChanger from "./BookShelfChanger";
 import * as BooksAPI from "../apis/BooksAPI";
 
 class MainPage extends React.Component {
   state = {
-    optionSelected: "None",
-    BookId: "",
+    // optionSelected: "None",
+    // BookId: "",
     read: [],
     CurrentlyReading: [],
     wantToRead: [],
@@ -18,6 +17,7 @@ class MainPage extends React.Component {
     super(props);
 
     this.onOptionSubmit = this.onOptionSubmit.bind(this);
+    this.getShelfs = this.getShelfs.bind(this);
   }
 
   componentDidMount() {
@@ -32,7 +32,7 @@ class MainPage extends React.Component {
           //console.log(book.shelf);
           switch (book.shelf) {
             case "currentlyReading":
-              console.log("currentlyReadin");
+              console.log("currentlyReading ");
               this.setState({
                 CurrentlyReading: this.state.CurrentlyReading.concat(book),
               });
@@ -58,10 +58,27 @@ class MainPage extends React.Component {
         console.log("error shelfing book");
       });
   }
-
-  onOptionSubmit = (selectValue, id) => {
-    this.setState({ optionSelected: selectValue, BookId: id }, () => {});
+  onOptionSubmit = (Book, option) => {
+    BooksAPI.update(Book, option)
+      .then((response) => {
+        if (option !== "none") {
+          this.getShelfs();
+          alert("The book have been added to your shelf");
+        }
+        console.log(response);
+      })
+      .catch((error) => {
+        alert("Their was an error while add a book to your shelf");
+        console.log("error shelfing book");
+      });
+    console.log("from search page");
   };
+  // onOptionSubmit = () => {
+  //this.getShelfs();
+  //  };
+  // onOptionSubmit = (selectValue, id) => {
+  //  this.setState({ optionSelected: selectValue, BookId: id }, () => {});
+  // };
   // <BookShelfChanger onwordSubmit={this.onCheckSubmit} />
   render() {
     return (
