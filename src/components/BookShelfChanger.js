@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import * as BooksAPI from "../apis/BooksAPI";
 
 /*
  constructor(props){
@@ -31,7 +32,7 @@ import "./App.css";
 
 class BookShelfChanger extends React.Component {
   // state = { ReadBooks: [], CurrentlyReadingBooks: [], WantToReadBooks: [] };
-  state = { value: "None" };
+  state = { value: "none" };
   constructor(props) {
     super(props);
     this.onValueChange = this.onValueChange.bind(this);
@@ -40,8 +41,35 @@ class BookShelfChanger extends React.Component {
   onValueChange = (event) => {
     console.log("from shelf change");
     console.log(event.target.value);
+    /*
+    await BooksAPI.search(term)
+      .then((response) => {
+        this.setState({ books: response });
+      })
+      .catch((error) => {
+        console.log("Error fetching and parsing data", error);
+      });
+      */
+    var option = event.target.value;
+    BooksAPI.update(this.props.Book, option)
+      .then((response) => {
+        if (option !== "none") alert("The book have been added to your shelf");
+        console.log(response);
+      })
+      .catch((error) => {
+        alert("Their was an error while add a book to your shelf");
+        console.log("error shelfing book");
+      });
+    BooksAPI.getAll()
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log("error shelfing book");
+      });
+
     //this.props.onOptionSubmit(event.target.value);
-    this.props.onOptionSubmit(event.target.value, this.props.BookId);
+    //  this.props.onOptionSubmit(event.target.value, this.props.BookId);
   };
 
   render() {

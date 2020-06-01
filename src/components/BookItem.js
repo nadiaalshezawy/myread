@@ -21,6 +21,15 @@ import BookShelfChanger from "./BookShelfChanger";
                 alt={this.props.book.description}
                 src={this.props.book.imageLinks.thumbnail}
               />
+              //////
+
+                const imageThumb = book.imageLinks ? book.imageLinks.smallThumbnail : null;
+
+        return (
+            <li>
+                <div className="book">
+                    <div className="book-top">
+                        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageThumb})` }}></div>
               */
 
 class BookItem extends React.Component {
@@ -39,7 +48,7 @@ class BookItem extends React.Component {
             </div>
             <BookShelfChanger
               onOptionSubmit={this.props.onOptionSubmit}
-              BookId={this.props.book.id}
+              Book={this.props.book}
             />
           </div>
         </div>
