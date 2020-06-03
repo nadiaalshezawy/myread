@@ -6,7 +6,7 @@ import * as BooksAPI from "../apis/BooksAPI";
 
 class MainPage extends React.Component {
   state = {
-    // optionSelected: "None",
+    // BookRemove: false,
     // BookId: "",
     read: [],
     CurrentlyReading: [],
@@ -24,24 +24,29 @@ class MainPage extends React.Component {
     this.getShelfs();
   }
 
-  getShelfs() {
+  getShelfs = () => {
+    this.setState({ read: [], CurrentlyReading: [], wantToRead: [] });
     BooksAPI.getAll()
       .then((books) => {
         console.log(books);
         books.map((book) => {
-          //console.log(book.shelf);
+          console.log(book.shelf);
           switch (book.shelf) {
             case "currentlyReading":
+              //if (!this.state.CurrentlyReading.includes(book.id) === false) {
               console.log("currentlyReading ");
               this.setState({
                 CurrentlyReading: this.state.CurrentlyReading.concat(book),
               });
+              // }
               break;
             case "wantToRead":
+              //  if (!this.state.wantToRead.includes(book.id) === false) {
               console.log("wantToRead");
               this.setState({
                 wantToRead: this.state.wantToRead.concat(book),
               });
+              //  }
               break;
             case "read":
               console.log("read");
@@ -49,6 +54,13 @@ class MainPage extends React.Component {
                 read: this.state.read.concat(book),
               });
               break;
+            case "none":
+              // this.setState({ BookRemove: true });
+              this.setState(this.state);
+              //  alert("The book have been removed from your shelf");
+              console.log("book remove");
+              break;
+            // break;
             default:
               break;
           }
@@ -57,13 +69,17 @@ class MainPage extends React.Component {
       .catch((error) => {
         console.log("error shelfing book");
       });
-  }
+  };
   onOptionSubmit = (Book, option) => {
     BooksAPI.update(Book, option)
       .then((response) => {
+        this.getShelfs();
         if (option !== "none") {
-          this.getShelfs();
+          //this.getShelfs();
           alert("The book have been added to your shelf");
+        } else {
+          // this.getShelfs();
+          alert("The book have been removed from your shelf");
         }
         console.log(response);
       })
@@ -71,7 +87,7 @@ class MainPage extends React.Component {
         alert("Their was an error while add a book to your shelf");
         console.log("error shelfing book");
       });
-    console.log("from search page");
+    console.log("from main page");
   };
   // onOptionSubmit = () => {
   //this.getShelfs();

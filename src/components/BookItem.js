@@ -48,7 +48,7 @@ class BookItem extends React.Component {
             </div>
             <BookShelfChanger
               onOptionSubmit={this.props.onOptionSubmit}
-              Book={this.props.book}
+              book={this.props.book}
             />
           </div>
         </div>

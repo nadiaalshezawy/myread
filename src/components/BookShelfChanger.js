@@ -32,18 +32,22 @@ import * as BooksAPI from "../apis/BooksAPI";
 
 class BookShelfChanger extends React.Component {
   // state = { ReadBooks: [], CurrentlyReadingBooks: [], WantToReadBooks: [] };
-  state = { valueDefault: " " };
+  state = { value: " " };
   constructor(props) {
     super(props);
     this.onValueChange = this.onValueChange.bind(this);
   }
+
+  //componentDidMount() {
+  //  this.setState({ value: "" });
+  // }
 
   onValueChange = (event) => {
     console.log("from shelf change");
     console.log(event.target.value);
 
     var option = event.target.value;
-    var Book = this.props.Book;
+    var book = this.props.book;
 
     /* 
    BooksAPI.update(this.props.Book, option)
@@ -68,7 +72,7 @@ class BookShelfChanger extends React.Component {
       });
 
     //this.props.onOptionSubmit(event.target.value);
-    this.props.onOptionSubmit(Book, option);
+    this.props.onOptionSubmit(book, option);
   };
 
   render() {
@@ -77,7 +81,7 @@ class BookShelfChanger extends React.Component {
         <div className="book-shelf-changer">
           <select
             onChange={this.onValueChange.bind(this)}
-            value={this.state.valueDefault}
+            value={this.props.book.shelf}
           >
             <option value="Move" disabled>
               Move to...

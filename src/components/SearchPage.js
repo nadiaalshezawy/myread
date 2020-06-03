@@ -36,7 +36,7 @@ class SearchPage extends React.Component {
       .then((response) => {
         if (option !== "none") {
           alert("The book have been added to your shelf");
-        }
+        } else alert("The book have been removed from your shelf");
         console.log(response);
       })
       .catch((error) => {
