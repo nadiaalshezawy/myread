@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import BookShelfChanger from "./BookShelfChanger";
+import * as BooksAPI from "../apis/BooksAPI";
 
 /*
 
@@ -33,6 +34,31 @@ import BookShelfChanger from "./BookShelfChanger";
               */
 
 class BookItem extends React.Component {
+  state = {
+    shelf: "",
+  };
+  constructor(props) {
+    super(props);
+
+    this.checkList = this.checkList.bind(this);
+  }
+
+  componentDidMount() {
+    this.checkList();
+  }
+
+  checkList = () => {
+    BooksAPI.get(this.props.book.id)
+      .then((response) => {
+        this.setState({ shelf: response.shelf });
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log("book is not in list");
+        this.setState({ shelf: "none" });
+      });
+  };
+
   render() {
     return (
       <li>
@@ -48,7 +74,9 @@ class BookItem extends React.Component {
             </div>
             <BookShelfChanger
               onOptionSubmit={this.props.onOptionSubmit}
+              checkList={this.checkList}
               book={this.props.book}
+              shelf={this.state.shelf}
             />
           </div>
         </div>

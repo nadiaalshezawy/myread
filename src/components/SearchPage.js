@@ -8,9 +8,6 @@ class SearchPage extends React.Component {
   state = { books: [] };
   constructor(props) {
     super(props);
-    // this.state = {
-    //  books: [],
-    //};
 
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
     this.onOptionSubmit = this.onOptionSubmit.bind(this);
@@ -26,9 +23,6 @@ class SearchPage extends React.Component {
       .catch((error) => {
         console.log("Error fetching and parsing data", error);
       });
-    console.log("from search sumbit");
-    console.log(this.state.books);
-    //   <BooksList books={this.state.books} />
   };
 
   onOptionSubmit = (Book, option) => {

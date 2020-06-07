@@ -6,8 +6,6 @@ import * as BooksAPI from "../apis/BooksAPI";
 
 class MainPage extends React.Component {
   state = {
-    // BookRemove: false,
-    // BookId: "",
     read: [],
     CurrentlyReading: [],
     wantToRead: [],
@@ -33,7 +31,6 @@ class MainPage extends React.Component {
           console.log(book.shelf);
           switch (book.shelf) {
             case "currentlyReading":
-              //if (!this.state.CurrentlyReading.includes(book.id) === false) {
               console.log("currentlyReading ");
               this.setState({
                 CurrentlyReading: this.state.CurrentlyReading.concat(book),
@@ -41,8 +38,6 @@ class MainPage extends React.Component {
               // }
               break;
             case "wantToRead":
-              //  if (!this.state.wantToRead.includes(book.id) === false) {
-              console.log("wantToRead");
               this.setState({
                 wantToRead: this.state.wantToRead.concat(book),
               });
@@ -55,12 +50,10 @@ class MainPage extends React.Component {
               });
               break;
             case "none":
-              // this.setState({ BookRemove: true });
               this.setState(this.state);
-              //  alert("The book have been removed from your shelf");
-              console.log("book remove");
+
               break;
-            // break;
+
             default:
               break;
           }
@@ -89,13 +82,7 @@ class MainPage extends React.Component {
       });
     console.log("from main page");
   };
-  // onOptionSubmit = () => {
-  //this.getShelfs();
-  //  };
-  // onOptionSubmit = (selectValue, id) => {
-  //  this.setState({ optionSelected: selectValue, BookId: id }, () => {});
-  // };
-  // <BookShelfChanger onwordSubmit={this.onCheckSubmit} />
+
   render() {
     return (
       <div className="list-books">
