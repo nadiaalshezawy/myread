@@ -5,7 +5,7 @@ import BooksList from "./BooksList";
 import * as BooksAPI from "../apis/BooksAPI";
 
 class SearchPage extends React.Component {
-  state = { books: [] };
+  state = { books: [], message: " " };
   constructor(props) {
     super(props);
 
@@ -13,14 +13,31 @@ class SearchPage extends React.Component {
     this.onOptionSubmit = this.onOptionSubmit.bind(this);
   }
 
-  //Take the term and return the search result
-  onSearchSubmit = async (term) => {
+  /*
+   onSearchSubmit = async (term) => {
     console.log(term);
     await BooksAPI.search(term)
       .then((response) => {
         this.setState({ books: response });
+        console.log(response);
       })
       .catch((error) => {
+        console.log("Error fetching and parsing data", error);
+      });
+  };
+  */
+
+  //Take the term and return the search result
+  onSearchSubmit = (term) => {
+    console.log(term);
+    BooksAPI.search(term)
+      .then((response) => {
+        this.setState({ books: response });
+        //  this.setState({ message: " " });
+        console.log(response);
+      })
+      .catch((error) => {
+        //this.setState({ message: "0 search result" });
         console.log("Error fetching and parsing data", error);
       });
   };
@@ -40,17 +57,19 @@ class SearchPage extends React.Component {
     console.log("from search page");
   };
   render() {
+    // <SearchBar onTermSubmit={this.onSearchSubmit} />
+
     return (
-      <div>
-        <div className="search-books">
-          <SearchBar onTermSubmit={this.onSearchSubmit} />
-        </div>
+      <div className="search-books">
+        <SearchBar onTermSubmit={this.onSearchSubmit} />
 
         <div className="search-books-results">
-          <BooksList
-            books={this.state.books}
-            onOptionSubmit={this.onOptionSubmit}
-          />
+          <ol className="books-grid">
+            <BooksList
+              books={this.state.books}
+              onOptionSubmit={this.onOptionSubmit}
+            />
+          </ol>
         </div>
       </div>
     );

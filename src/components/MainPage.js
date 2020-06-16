@@ -27,7 +27,7 @@ class MainPage extends React.Component {
     BooksAPI.getAll()
       .then((books) => {
         console.log(books);
-        books.map((book) => {
+        books.forEach((book) => {
           console.log(book.shelf);
           switch (book.shelf) {
             case "currentlyReading":
@@ -74,13 +74,13 @@ class MainPage extends React.Component {
           // this.getShelfs();
           alert("The book have been removed from your shelf");
         }
-        console.log(response);
+        //  console.log(response);
       })
       .catch((error) => {
         alert("Their was an error while add a book to your shelf");
-        console.log("error shelfing book");
+        // console.log("error shelfing book");
       });
-    console.log("from main page");
+    // console.log("from main page");
   };
 
   render() {
@@ -94,28 +94,34 @@ class MainPage extends React.Component {
             <div className="bookshelf">
               <h2 className="bookshelf-title">Currently Reading</h2>
               <div className="bookshelf-books">
-                <BooksList
-                  books={this.state.CurrentlyReading}
-                  onOptionSubmit={this.onOptionSubmit}
-                />
+                <ol className="books-grid">
+                  <BooksList
+                    books={this.state.CurrentlyReading}
+                    onOptionSubmit={this.onOptionSubmit}
+                  />
+                </ol>
               </div>
             </div>
             <div className="bookshelf">
               <h2 className="bookshelf-title">Want to Read</h2>
               <div className="bookshelf-books">
-                <BooksList
-                  books={this.state.wantToRead}
-                  onOptionSubmit={this.onOptionSubmit}
-                />
+                <ol className="books-grid">
+                  <BooksList
+                    books={this.state.wantToRead}
+                    onOptionSubmit={this.onOptionSubmit}
+                  />
+                </ol>
               </div>
             </div>
             <div className="bookshelf">
               <h2 className="bookshelf-title">Read</h2>
               <div className="bookshelf-books">
-                <BooksList
-                  books={this.state.read}
-                  onOptionSubmit={this.onOptionSubmit}
-                />
+                <ol className="books-grid">
+                  <BooksList
+                    books={this.state.read}
+                    onOptionSubmit={this.onOptionSubmit}
+                  />
+                </ol>
               </div>
             </div>
           </div>

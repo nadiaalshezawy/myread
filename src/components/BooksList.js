@@ -12,9 +12,11 @@ const BooksList = (props) => {
     // const onCheckSubmit = props.onCheckSubmit;
     const books = props.books.map((book) => {
       return (
-        <ol className="books-grid" key={book.id}>
-          <BookItem book={book} onOptionSubmit={props.onOptionSubmit} />
-        </ol>
+        <BookItem
+          book={book}
+          onOptionSubmit={props.onOptionSubmit}
+          key={book.id}
+        />
       );
     });
     return books;

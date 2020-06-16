@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-import * as BooksAPI from "../apis/BooksAPI";
 
 class BookShelfChanger extends React.Component {
   constructor(props) {
@@ -10,8 +9,8 @@ class BookShelfChanger extends React.Component {
   }
 
   onValueChange = (event) => {
-    console.log("from shelf change");
-    console.log(event.target.value);
+    // console.log("from shelf change");
+    //   console.log(event.target.value);
 
     var option = event.target.value;
     var book = this.props.book;
