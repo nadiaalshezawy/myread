@@ -9,9 +9,6 @@ class BookShelfChanger extends React.Component {
   }
 
   onValueChange = (event) => {
-    // console.log("from shelf change");
-    //   console.log(event.target.value);
-
     var option = event.target.value;
     var book = this.props.book;
 

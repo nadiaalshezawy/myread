@@ -18,4 +18,3 @@ I have used the provided starter code and the booksAPI.js file that come es with
 3. After that run 
  `npm start`
 
-## Search word 

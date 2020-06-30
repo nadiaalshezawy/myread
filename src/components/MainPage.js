@@ -98,6 +98,7 @@ class MainPage extends React.Component {
                   <BooksList
                     books={this.state.CurrentlyReading}
                     onOptionSubmit={this.onOptionSubmit}
+                    message=" "
                   />
                 </ol>
               </div>
